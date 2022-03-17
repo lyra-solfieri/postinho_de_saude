@@ -19,24 +19,6 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  String validateLogin(String text) {
-    if (text.isEmpty) {
-      return "Informe o login";
-    }
-
-    return null;
-  }
-
-  String validateSenha(String text) {
-    if (text.isEmpty) {
-      return "Informe a senha";
-    }
-    if (text.length < 7) {
-      return "A senha deve possui mais de 7 caracteres";
-    }
-    return null;
-  }
-
   _body(BuildContext context) {
     return Form(
       key: _formKey,
@@ -52,11 +34,20 @@ class LoginPage extends StatelessWidget {
           ),
           textFormLogin(),
           textFormFieldSenha(),
-          containerButton(context),
-          cadastroForm(context),
+          loginButton(context),
+          cadastroButton(context),
         ],
       ),
     );
+  }
+
+  // verifica se o campo login tem caractere digitado
+  String validateLogin(String text) {
+    if (text.isEmpty) {
+      return "Informe o login";
+    }
+
+    return null;
   }
 
   Container textFormLogin() {
@@ -72,6 +63,17 @@ class LoginPage extends StatelessWidget {
                 labelText: "CPF",
                 labelStyle: TextStyle(fontSize: 20.0, color: Colors.black),
                 hintText: "Informe seu CPF")));
+  }
+
+  // verifica se o campo senha tem caracteres
+  String validateSenha(String text) {
+    if (text.isEmpty) {
+      return "Informe a senha";
+    }
+    if (text.length < 7) {
+      return "A senha deve possui mais de 7 caracteres";
+    }
+    return null;
   }
 
   Container textFormFieldSenha() {
@@ -94,19 +96,23 @@ class LoginPage extends StatelessWidget {
 
 // Fazer validação do cpf e senha com os dados cadastrados
   _onClickLogin(BuildContext context) async {
-    Navigator.pushNamed(context, '/menu');
-
     if (!_formKey.currentState.validate()) {
-      return;
+      return Navigator.pushNamed(context, '/menu');
+    } else {
+      return throw new Exception('Usuário inválido');
     }
   }
 
-  Container containerButton(BuildContext context) {
+  Container loginButton(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(5),
       child: ElevatedButton(
         onPressed: () {
-          _onClickLogin(context);
+          try {
+            _onClickLogin(context);
+          } catch (e) {
+            print('$e');
+          }
         },
         style: style,
         child: Text('Entrar'),
@@ -114,14 +120,13 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Container cadastroForm(BuildContext context) {
+  Container cadastroButton(BuildContext context) {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text('Ainda Não tem cadastro ?'),
-          FlatButton(
-            textColor: Colors.blue,
+          Text('Ainda não tem cadastro ?'),
+          TextButton(
             child: Text(
               'Cadastrar',
               style: TextStyle(fontSize: 20),

@@ -5,16 +5,6 @@ class Paciente {
   final String senha;
   final String cartaoSus;
   final String dataNascimento;
-  /*
-  static final columns = [
-    'id',
-    'nome',
-    'cpf',
-    'senha',
-    'cartaoSus',
-    'dataNascimento'
-  ];
-  */
 
   Paciente({
     this.id,
