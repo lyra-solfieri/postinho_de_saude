@@ -121,7 +121,7 @@ class LoginPage extends StatelessWidget {
                 Navigator.pushNamed(context, '/menu'),
               })
           .catchError((onError) {
-        Fluttertoast.showToast(msg: onError).toString();
+        Fluttertoast.showToast(msg: '$onError').toString();
       });
     }
   }

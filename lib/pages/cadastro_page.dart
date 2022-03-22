@@ -5,8 +5,11 @@ class CadastroPage extends StatelessWidget {
 
   final _nomeForm = TextEditingController();
   final _cpfForm = TextEditingController();
+  final _enderecoForm = TextEditingController();
+  final _emailForm = TextEditingController();
   final _dataNascimentoForm = TextEditingController();
   final _senhaForm = TextEditingController();
+  final _confirmaSenha = TextEditingController();
   final _cartaoSUS = TextEditingController();
 
   @override
@@ -39,7 +42,7 @@ class CadastroPage extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: TextFormField(
             controller: _nomeForm,
-            validator: validateNome,
+            // validator: validateNome,
             keyboardType: TextInputType.text,
             style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
@@ -49,12 +52,46 @@ class CadastroPage extends StatelessWidget {
                 hintText: "Informe o nome")));
   }
 
+  Container enderecoForm() {
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: TextFormField(
+        controller: _enderecoForm,
+        //validator: ,
+        keyboardType: TextInputType.streetAddress,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: "Digite seu endereço (rua,número e bairro)",
+          hintText: "Informe seu endereço. Ex: Rua afrânio,233,cohab 2",
+          labelStyle: TextStyle(fontSize: 20.0, color: Colors.black),
+        ),
+      ),
+    );
+  }
+
+  Container emailForm() {
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: TextFormField(
+        controller: _emailForm,
+        //validator: ,
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: "Digite seu email",
+          hintText: "Informe o email",
+          labelStyle: TextStyle(fontSize: 20.0, color: Colors.black),
+        ),
+      ),
+    );
+  }
+
   Container senhaForm() {
     return Container(
         padding: EdgeInsets.all(10),
         child: TextFormField(
           controller: _senhaForm,
-          validator: validateSenha,
+          //validator: validateSenha,
           obscureText: true,
           keyboardType: TextInputType.visiblePassword,
           style: TextStyle(color: Colors.black),
@@ -71,8 +108,8 @@ class CadastroPage extends StatelessWidget {
     return Container(
         padding: EdgeInsets.all(10),
         child: TextFormField(
-          controller: _senhaForm,
-          validator: validateConfirmacaoSenha,
+          controller: _confirmaSenha,
+          //validator: validateConfirmacaoSenha,
           obscureText: true,
           keyboardType: TextInputType.visiblePassword,
           style: TextStyle(color: Colors.black),
@@ -90,7 +127,7 @@ class CadastroPage extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: TextFormField(
           controller: _cpfForm,
-          validator: validateCpf,
+          //validator: validateCpf,
           obscureText: false,
           keyboardType: TextInputType.number,
           style: TextStyle(color: Colors.black),
@@ -108,7 +145,7 @@ class CadastroPage extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: TextFormField(
           controller: _dataNascimentoForm,
-          validator: validateConfirmacaoSenha,
+          // validator: validateConfirmacaoSenha,
           obscureText: false,
           keyboardType: TextInputType.datetime,
           style: TextStyle(color: Colors.black),
@@ -126,7 +163,7 @@ class CadastroPage extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: TextFormField(
           controller: _cartaoSUS,
-          validator: validateConfirmacaoSenha,
+          //validator: validateConfirmacaoSenha,
           obscureText: false,
           keyboardType: TextInputType.number,
           style: TextStyle(color: Colors.black),
@@ -149,53 +186,5 @@ class CadastroPage extends StatelessWidget {
         child: Text('Cadastrar-se'),
       ),
     );
-  }
-
-  String validateNome(String text) {
-    if (text.isEmpty) {
-      return "Campo Obrigatório";
-    }
-
-    return null;
-  }
-
-  String validateCpf(String text) {
-    if (text.isEmpty) {
-      return "Campo Obrigatório";
-    }
-
-    return null;
-  }
-
-  String validateDataNascimentoForm(String text) {
-    if (text.isEmpty) {
-      return "Campo Obrigatório";
-    }
-
-    return null;
-  }
-
-  String validateSenha(String text) {
-    if (text.isEmpty) {
-      return "Campo Obrigatório";
-    }
-
-    return null;
-  }
-
-  String validateConfirmacaoSenha(String text) {
-    if (text.isEmpty) {
-      return "Campo Obrigatório";
-    }
-
-    return null;
-  }
-
-  String validateCartaoSUS(String text) {
-    if (text.isEmpty) {
-      return "Campo Obrigatório";
-    }
-
-    return null;
   }
 }
