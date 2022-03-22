@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginPage extends StatelessWidget {
   final _tLogin = TextEditingController();
@@ -6,7 +8,10 @@ class LoginPage extends StatelessWidget {
   final ButtonStyle style =
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+
+  // Firebase
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +29,7 @@ class LoginPage extends StatelessWidget {
       key: _formKey,
       child: ListView(
         children: <Widget>[
+          SizedBox(height: 30),
           Text(
             'Postinho Garanhuns',
             style: TextStyle(
@@ -32,6 +38,7 @@ class LoginPage extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
+          SizedBox(height: 30),
           textFormLogin(),
           textFormFieldSenha(),
           loginButton(context),
@@ -41,51 +48,61 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  // verifica se o campo login tem caractere digitado
-  String validateLogin(String text) {
-    if (text.isEmpty) {
-      return "Informe o login";
-    }
-
-    return null;
-  }
-
+// campo de email com validação
   Container textFormLogin() {
     return Container(
         padding: EdgeInsets.all(10),
         child: TextFormField(
-            controller: _tLogin,
-            validator: validateLogin,
-            keyboardType: TextInputType.text,
-            style: TextStyle(color: Colors.black),
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "CPF",
-                labelStyle: TextStyle(fontSize: 20.0, color: Colors.black),
-                hintText: "Informe seu CPF")));
+          controller: _tLogin,
+          validator: (value) {
+            if (value.isEmpty) {
+              return ("Por favor digite seu email");
+            }
+            // reg expression: para validação do email
+            if (!RegExp(
+                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                .hasMatch(value)) {
+              return "Digite um email válido";
+            }
+
+            return null;
+          },
+          keyboardType: TextInputType.emailAddress,
+          style: TextStyle(color: Colors.black),
+          onSaved: (newValue) => {_tLogin.text = newValue},
+          textInputAction: TextInputAction.done,
+          decoration: InputDecoration(
+              prefixIcon: Icon(Icons.mail),
+              border: OutlineInputBorder(),
+              labelText: "Email",
+              labelStyle: TextStyle(fontSize: 20.0, color: Colors.black),
+              hintText: "Informe o email"),
+        ));
   }
 
-  // verifica se o campo senha tem caracteres
-  String validateSenha(String text) {
-    if (text.isEmpty) {
-      return "Informe a senha";
-    }
-    if (text.length < 7) {
-      return "A senha deve possui mais de 7 caracteres";
-    }
-    return null;
-  }
-
+// campo de senha com validação
   Container textFormFieldSenha() {
     return Container(
         padding: EdgeInsets.all(10),
         child: TextFormField(
           controller: _tSenha,
-          validator: validateSenha,
+          validator: (value) {
+            RegExp regex = RegExp(r'^.{6,}$');
+            if (value.isEmpty) {
+              return "Digite a senha";
+            }
+            if (!regex.hasMatch(value)) {
+              return "Digite um senha válida com no mínimo 6 caracteres";
+            }
+            return null;
+          },
           obscureText: true,
           keyboardType: TextInputType.visiblePassword,
           style: TextStyle(color: Colors.black),
+          onSaved: (newValue) => {_tSenha.text = newValue},
+          textInputAction: TextInputAction.next,
           decoration: InputDecoration(
+            prefixIcon: Icon(Icons.password),
             border: OutlineInputBorder(),
             labelText: "Senha",
             labelStyle: TextStyle(fontSize: 20.0, color: Colors.black),
@@ -94,12 +111,18 @@ class LoginPage extends StatelessWidget {
         ));
   }
 
-// Fazer validação do cpf e senha com os dados cadastrados
-  _onClickLogin(BuildContext context) async {
-    if (!_formKey.currentState.validate()) {
-      return Navigator.pushNamed(context, '/menu');
-    } else {
-      return throw new Exception('Usuário inválido');
+// função de ação do botão após preencher os campos email e senha
+  _onClickLogin(BuildContext context, String email, String senha) async {
+    if (_formKey.currentState.validate()) {
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: senha)
+          .then((uid) => {
+                Fluttertoast.showToast(msg: 'Logado com sucesso'),
+                Navigator.pushNamed(context, '/menu'),
+              })
+          .catchError((onError) {
+        Fluttertoast.showToast(msg: onError).toString();
+      });
     }
   }
 
@@ -108,11 +131,7 @@ class LoginPage extends StatelessWidget {
       padding: EdgeInsets.all(5),
       child: ElevatedButton(
         onPressed: () {
-          try {
-            _onClickLogin(context);
-          } catch (e) {
-            print('$e');
-          }
+          _onClickLogin(context, _tLogin.text, _tSenha.text);
         },
         style: style,
         child: Text('Entrar'),

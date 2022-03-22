@@ -2,9 +2,14 @@ import 'package:app_saude/pages/cadastro_page.dart';
 import 'package:app_saude/pages/login_page.dart';
 import 'package:app_saude/pages/principal_page.dart';
 import 'package:app_saude/pages/agendar_consulta.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-main(List<String> args) => runApp(Myapp());
+Future main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(Myapp());
+}
 
 class Myapp extends StatelessWidget {
   const Myapp({Key key}) : super(key: key);

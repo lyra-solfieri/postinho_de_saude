@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1066885982380",
+    "project_id": "emailpasswordauthpostinho",
+    "storage_bucket": "emailpasswordauthpostinho.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066885982380:android:73ac1a654316392fb3d709",
+        "android_client_info": {
+          "package_name": "com.example.app_saude"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066885982380-qcoa2j08104ht6q6aibpeno9rnln4ht4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.app_saude",
+            "certificate_hash": "0c1ef34ae91e846ff1068f7ff6417be417db74bb"
+          }
+        },
+        {
+          "client_id": "1066885982380-d9dprcb31m0bullccp3jkdonghnvu2om.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABigXKFQ0L6mHAcyW2CuOUdW9a6u6hzQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1066885982380-d9dprcb31m0bullccp3jkdonghnvu2om.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
