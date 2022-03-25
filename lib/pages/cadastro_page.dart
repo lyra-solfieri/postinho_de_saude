@@ -1,3 +1,4 @@
+import 'package:app_saude/models/paciente.dart';
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -256,6 +257,21 @@ class CadastroPage extends StatelessWidget {
 
   //enviando os dados dos campos para o firestore
   postToFirestore() async {
+    User user = _auth.currentUser;
+    Paciente pacientModel = Paciente();
+
+    pacientModel.id = user.uid as int;
+    pacientModel.email = user.email;
+    pacientModel.nome = _nomeForm.text;
+    pacientModel.cpf = _cpfForm.text;
+    pacientModel.cartaoSus = _cartaoSUS.text;
+    pacientModel.endereco = _enderecoForm.text;
+    pacientModel.dataNascimento = _dataNascimentoForm.text;
+
+    await _pacientes.doc(user.uid).set(pacientModel.toMap());
+    Fluttertoast.showToast(msg: 'conta criada com sucesso!');
+
+    /*
     await _pacientes.add({
       'nome': _nomeForm.text,
       'senha': _senhaForm.text,
@@ -264,15 +280,18 @@ class CadastroPage extends StatelessWidget {
       'endereco': _enderecoForm.text,
       'cartaoSus': _cartaoSUS.text,
       'dataNascimento': _dataNascimentoForm.text,
-    });
+    });*/
   }
 
 // Função para o botão de submeter os dados dos novos pacientes
-  _cadastroLogin(String email, String senha) async {
+  _cadastroLogin(BuildContext context, String email, String senha) async {
     if (_formKey.currentState.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: senha)
-          .then((value) => {postToFirestore()})
+          .then((value) => {
+                postToFirestore(),
+                Navigator.pushNamed(context, '/'),
+              })
           .catchError((e) {
         Fluttertoast.showToast(msg: e.message);
       });
@@ -284,7 +303,7 @@ class CadastroPage extends StatelessWidget {
       padding: EdgeInsets.all(55),
       child: ElevatedButton(
         onPressed: () {
-          _cadastroLogin(_emailForm.text, _senhaForm.text);
+          _cadastroLogin(context, _emailForm.text, _senhaForm.text);
           print("Cadastrar");
         },
         child: Text('Cadastrar-se'),

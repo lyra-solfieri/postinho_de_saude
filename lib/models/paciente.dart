@@ -3,7 +3,7 @@ class Paciente {
   String nome;
   String email;
   String endereco;
-  int cpf;
+  String cpf;
   String senha;
   String cartaoSus;
   String dataNascimento;
