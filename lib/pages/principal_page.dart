@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
         body: Container(
           child: Column(
             children: [
+              acessarMedicamentos(),
               Center(
                 child: agendarConsulta(),
               ),
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.all(30),
       child: ElevatedButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/agendar_consulta');
+          //Navigator.pushNamed(context, '/agendar_consulta');
         },
         child: Text(
           'Agendar Consulta Médica',
