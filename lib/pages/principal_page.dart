@@ -37,4 +37,18 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  Container acessarMedicamentos() {
+    return Container(
+      padding: const EdgeInsets.all(30),
+      child: ElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/agendar_consulta');
+          },
+          child: Text(
+            "Ver medicamentos",
+            style: TextStyle(fontSize: 20),
+          )),
+    );
+  }
 }
