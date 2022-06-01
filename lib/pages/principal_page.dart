@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.all(30),
       child: ElevatedButton(
         onPressed: () {
-          //Navigator.pushNamed(context, '/agendar_consulta');
+          Navigator.pushNamed(context, '/agendar_consulta');
         },
         child: Text(
           'Agendar Consulta Médica',
@@ -43,13 +43,14 @@ class _HomePageState extends State<HomePage> {
     return Container(
       padding: const EdgeInsets.all(30),
       child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/agendar_consulta');
-          },
-          child: Text(
-            "Ver medicamentos",
-            style: TextStyle(fontSize: 20),
-          )),
+        onPressed: () {
+          //Navigator.pushNamed(context, '/agendar_consulta');
+        },
+        child: Text(
+          "Ver medicamentos",
+          style: TextStyle(fontSize: 20),
+        ),
+      ),
     );
   }
 }
