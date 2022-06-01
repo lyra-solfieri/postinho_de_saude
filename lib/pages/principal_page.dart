@@ -19,6 +19,9 @@ class _HomePageState extends State<HomePage> {
               Center(
                 child: agendarConsulta(),
               ),
+              Center(
+                child: localizacaoPostinho(),
+              ),
             ],
           ),
         ));
@@ -44,10 +47,25 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.all(30),
       child: ElevatedButton(
         onPressed: () {
-          //Navigator.pushNamed(context, '/agendar_consulta');
+          Navigator.pushNamed(context, '/consultar_medicamentos');
         },
         child: Text(
           "Ver medicamentos",
+          style: TextStyle(fontSize: 20),
+        ),
+      ),
+    );
+  }
+
+  Container localizacaoPostinho() {
+    return Container(
+      padding: const EdgeInsets.all(30),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/localizacao_postinho');
+        },
+        child: Text(
+          "Localização Postinho",
           style: TextStyle(fontSize: 20),
         ),
       ),
