@@ -260,7 +260,7 @@ class CadastroPage extends StatelessWidget {
     User user = _auth.currentUser;
     Paciente pacientModel = Paciente();
 
-    /* pacientModel.id = user.uid as int;
+    pacientModel.id = user.uid as int;
     pacientModel.email = user.email;
     pacientModel.nome = _nomeForm.text;
     pacientModel.cpf = _cpfForm.text;
@@ -269,7 +269,7 @@ class CadastroPage extends StatelessWidget {
     pacientModel.dataNascimento = _dataNascimentoForm.text;
 
     await _pacientes.doc(user.uid).set(pacientModel.toMap());
-    Fluttertoast.showToast(msg: 'conta criada com sucesso!');*/
+    Fluttertoast.showToast(msg: 'conta criada com sucesso!');
 
     await _pacientes.add({
       'nome': _nomeForm.text,

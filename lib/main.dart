@@ -1,10 +1,13 @@
-import 'package:app_saude/pages/cadastro_page.dart';
+import 'package:app_saude/pages/inicial_page.dart';
 import 'package:app_saude/pages/login_page.dart';
+import 'package:app_saude/pages/cadastro_page.dart';
 import 'package:app_saude/pages/principal_page.dart';
 import 'package:app_saude/pages/agendar_consulta.dart';
 import 'package:app_saude/pages/localizacao_postinho.dart';
 import 'package:app_saude/pages/consultar_medicamentos.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:app_saude/pages/loading_page.dart';
+
 import 'package:flutter/material.dart';
 
 Future main(List<String> args) async {
@@ -28,8 +31,10 @@ class Myapp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => LoginPage(),
+        '/': (context) => InicialPage(),
+        '/login_page': (context) => LoginPage(),
         '/cadastro': (context) => CadastroPage(),
+        '/loading': (context) => LoadingPage(),
         '/menu': (context) => HomePage(),
         '/agendar_consulta': (context) => Agendamento(),
         '/localizacao_postinho': (context) => LocalizacaoPostinho(),
