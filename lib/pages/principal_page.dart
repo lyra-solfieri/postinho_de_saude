@@ -38,6 +38,15 @@ class _HomePageState extends State<HomePage> {
           'Agendar Consulta Médica',
           style: TextStyle(fontSize: 20),
         ),
+        style: ElevatedButton.styleFrom(
+          onPrimary: Colors.white,
+          primary: Colors.blue,
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 120),
+          side: BorderSide(color: Colors.white, width: 1),
+          elevation: 20,
+          textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          minimumSize: Size(150, 50),
+        ),
       ),
     );
   }
@@ -53,6 +62,16 @@ class _HomePageState extends State<HomePage> {
           "Ver medicamentos",
           style: TextStyle(fontSize: 20),
         ),
+        style: ElevatedButton.styleFrom(
+          onPrimary: Colors.white,
+          primary: Colors.blue,
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 120),
+          side: BorderSide(color: Colors.white, width: 1),
+          elevation: 20,
+          textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          minimumSize: Size(150, 50),
+          shadowColor: Colors.teal,
+        ),
       ),
     );
   }
@@ -65,9 +84,19 @@ class _HomePageState extends State<HomePage> {
           Navigator.pushNamed(context, '/localizacao_postinho');
         },
         child: Text(
-          "Localização Postinho",
+          "Localização do seu Postinho",
           style: TextStyle(fontSize: 20),
         ),
+        style: ElevatedButton.styleFrom(
+            onPrimary: Colors.white,
+            primary: Colors.blue,
+            onSurface: Colors.grey,
+            side: BorderSide(color: Colors.white, width: 1),
+            elevation: 20,
+            textStyle:
+                const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            minimumSize: Size(150, 50),
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 120)),
       ),
     );
   }
