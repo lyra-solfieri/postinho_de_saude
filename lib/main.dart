@@ -3,7 +3,7 @@ import 'package:app_saude/pages/login_page.dart';
 import 'package:app_saude/pages/cadastro_page.dart';
 import 'package:app_saude/pages/principal_page.dart';
 import 'package:app_saude/pages/agendar_consulta.dart';
-import 'package:app_saude/pages/localizacao_postinho.dart';
+import 'package:app_saude/pages/relatorio_postinho.dart';
 import 'package:app_saude/pages/consultar_medicamentos.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:app_saude/pages/loading_page.dart';
@@ -37,7 +37,7 @@ class Myapp extends StatelessWidget {
         '/loading': (context) => LoadingPage(),
         '/menu': (context) => HomePage(),
         '/agendar_consulta': (context) => Agendamento(),
-        '/localizacao_postinho': (context) => LocalizacaoPostinho(),
+        '/relatorio_postinho': (context) => GerarRelatorioPdf(),
         '/consultar_medicamentos': (context) => ConsultaMedicamentos(),
       },
     );

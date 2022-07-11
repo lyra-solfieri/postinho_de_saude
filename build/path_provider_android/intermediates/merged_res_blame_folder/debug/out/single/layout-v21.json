@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/lira/Área de Trabalho/postinho/postinho_de_saude/build/path_provider_android/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/home/lira/.gradle/caches/transforms-2/files-2.1/b2aa084a675c777672d7d91da9ce3730/core-1.6.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/lira/Área de Trabalho/postinho/postinho_de_saude/build/path_provider_android/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/home/lira/.gradle/caches/transforms-2/files-2.1/b2aa084a675c777672d7d91da9ce3730/core-1.6.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/home/lira/Área de Trabalho/postinho/postinho_de_saude/build/path_provider_android/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/home/lira/.gradle/caches/transforms-2/files-2.1/b2aa084a675c777672d7d91da9ce3730/core-1.6.0/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/home/lira/Área de Trabalho/postinho/postinho_de_saude/build/path_provider_android/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/home/lira/.gradle/caches/transforms-2/files-2.1/b2aa084a675c777672d7d91da9ce3730/core-1.6.0/res/layout-v21/notification_template_icon_group.xml"
+    }
+]

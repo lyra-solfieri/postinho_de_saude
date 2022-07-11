@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
                 child: agendarConsulta(),
               ),
               Center(
-                child: localizacaoPostinho(),
+                child: relatorioPostinho(),
               ),
             ],
           ),
@@ -76,15 +76,15 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container localizacaoPostinho() {
+  Container relatorioPostinho() {
     return Container(
       padding: const EdgeInsets.all(30),
       child: ElevatedButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/localizacao_postinho');
+          Navigator.pushNamed(context, '/relatorio_postinho');
         },
         child: Text(
-          "Localização do seu Postinho",
+          "Relatório Consulta",
           style: TextStyle(fontSize: 20),
         ),
         style: ElevatedButton.styleFrom(

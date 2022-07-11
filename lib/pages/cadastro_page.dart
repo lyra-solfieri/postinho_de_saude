@@ -267,7 +267,6 @@ class CadastroPage extends StatelessWidget {
     pacientModel.cartaoSus = _cartaoSUS.text;
     pacientModel.endereco = _enderecoForm.text;
     pacientModel.dataNascimento = _dataNascimentoForm.text;
-
     await _pacientes.doc(user.uid).set(pacientModel.toMap());
     Fluttertoast.showToast(msg: 'conta criada com sucesso!');
 
@@ -289,7 +288,7 @@ class CadastroPage extends StatelessWidget {
           .createUserWithEmailAndPassword(email: email, password: senha)
           .then((value) => {
                 postToFirestore(),
-                Navigator.pushNamed(context, '/'),
+                Navigator.pushNamed(context, '/login_page'),
               })
           .catchError((e) {
         Fluttertoast.showToast(msg: e.message);

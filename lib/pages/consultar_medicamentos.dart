@@ -1,3 +1,4 @@
+import 'package:app_saude/models/medicamentos.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -8,14 +9,35 @@ class ConsultaMedicamentos extends StatefulWidget {
 }
 
 class _MyAppState extends State<ConsultaMedicamentos> {
+  bool isLoading = true;
+  Future<MedicamentosModel> futureMedicamento;
+  var listaMedicamentos = [];
+
+  final response = http.get(Uri.parse(
+      'https://emailpasswordauthpostinho-default-rtdb.firebaseio.com/medicamentos' +
+          '.json'));
+
   void initState() {
     super.initState();
-    readData();
+    futureMedicamento = fetchMedicamento();
   }
 
-  bool isLoading = true;
-  List<String> list = [];
+  Future<MedicamentosModel> fetchMedicamento() async {
+    final response = await http.get(Uri.parse(
+        'https://emailpasswordauthpostinho-default-rtdb.firebaseio.com/medicamentos' +
+            '.json'));
 
+    if (response.statusCode == 200) {
+      print(response.body);
+      listaMedicamentos.add(response.body.toString());
+      Text(response.body.toString());
+      return MedicamentosModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Falha ao carregar dados');
+    }
+  }
+
+/*
   Future<void> readData() async {
     var url =
         "https://emailpasswordauthpostinho-default-rtdb.firebaseio.com/medicamentos" +
@@ -28,7 +50,7 @@ class _MyAppState extends State<ConsultaMedicamentos> {
         return;
       }
       extractedData.forEach((medId, medData) {
-        list.add(medData["medicamento"]);
+        medicamentos.add(medData["medicamento"]);
       });
       setState(() {
         isLoading = false;
@@ -37,28 +59,28 @@ class _MyAppState extends State<ConsultaMedicamentos> {
       throw error;
     }
   }
+  */
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Medicamentos"),
+        title: const Text('Medicamentos'),
       ),
-      body: isLoading
-          ? CircularProgressIndicator()
-          : ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: list.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                    height: 50,
-                    child: Center(
-                      child: Text(
-                        list[index],
-                        style: TextStyle(color: Colors.green),
-                      ),
-                    ));
-              }),
+      body: Center(
+        child: FutureBuilder<MedicamentosModel>(
+          future: futureMedicamento,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Text(listaMedicamentos[0]);
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+
+            return const CircularProgressIndicator();
+          },
+        ),
+      ),
     );
   }
 }

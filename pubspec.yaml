@@ -38,6 +38,12 @@ dependencies:
   firebase_core: ^1.13.0
   fluttertoast: ^8.0.9
   loading_animation_widget: ^1.2.0+2
+  table_calendar: ^3.0.6
+  flutter_calendar_carousel: ^2.3.1
+  pdf: ^3.8.1
+  share_extend: ^2.0.0
+  path_provider: ^2.0.11
+  advance_pdf_viewer: ^2.0.1
 
 dev_dependencies:
   flutter_test:
